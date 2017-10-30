@@ -1,0 +1,16 @@
+﻿{
+  "ConnectionStrings": {
+    "DutchConnection": "Data Source=.\\sqlexpress;Initial Catalog=DutchTreatDb;Integrated Security=True;MultipleActiveResultSets=True"
+  },
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft": "Warning"
+    }
+  },
+  "Tokens": {
+    "Key": "a456lkjasdf;lkajsd;flkjasdflkja sd",
+    "Issuer": "http://localhost:8888",
+    "Audience": "users"
+  }
+}

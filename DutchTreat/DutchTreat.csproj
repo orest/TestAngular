@@ -2,14 +2,24 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptToolsVersion>2.3</TypeScriptToolsVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.0.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
   </ItemGroup>
-
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" version="2.0"></DotNetCliToolReference>                        
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Views\Account\Login.cshtml" />
+    <None Include="Views\App\About.cshtml" />
+    <None Include="Views\App\Contact.cshtml" />
+    <None Include="Views\App\Index.cshtml" />
+    <None Include="Views\App\Shop.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
 </Project>
