@@ -8,7 +8,21 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 var platform_browser_1 = require("@angular/platform-browser");
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var http_1 = require("@angular/common/http");
+var forms_1 = require("@angular/forms");
 var app_component_1 = require("./app.component");
+var productList_component_1 = require("./shop/productList.component");
+var cart_component_1 = require("./shop/cart.component");
+var dataService_1 = require("./shared/dataService");
+var shop_component_1 = require("./shop/shop.component");
+var checkout_component_1 = require("./checkout/checkout.component");
+var login_component_1 = require("./login/login.component");
+var routes = [
+    { path: "", component: shop_component_1.Shop },
+    { path: "checkout", component: checkout_component_1.Checkout },
+    { path: "login", component: login_component_1.Login }
+];
 var AppModule = (function () {
     function AppModule() {
     }
@@ -17,12 +31,23 @@ var AppModule = (function () {
 AppModule = __decorate([
     core_1.NgModule({
         declarations: [
-            app_component_1.AppComponent
+            app_component_1.AppComponent,
+            productList_component_1.ProductList,
+            cart_component_1.Cart,
+            shop_component_1.Shop,
+            checkout_component_1.Checkout,
+            login_component_1.Login
         ],
         imports: [
-            platform_browser_1.BrowserModule
+            platform_browser_1.BrowserModule,
+            http_1.HttpClientModule,
+            forms_1.FormsModule,
+            router_1.RouterModule.forRoot(routes, {
+                useHash: true,
+                enableTracing: false
+            })
         ],
-        providers: [],
+        providers: [dataService_1.DataService],
         bootstrap: [app_component_1.AppComponent]
     })
 ], AppModule);

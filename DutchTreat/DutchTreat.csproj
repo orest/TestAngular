@@ -22,4 +22,7 @@
     <None Include="Views\App\Shop.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\shop\productList.component.ts" />
+  </ItemGroup>
 </Project>

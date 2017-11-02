@@ -7,36 +7,56 @@ using DutchTreat.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-namespace DutchTreat.Data {
-    public class DutchRepository : IDutchRepository {
+namespace DutchTreat.Data
+{
+    public class DutchRepository : IDutchRepository
+    {
         private readonly DutchContext _ctx;
         private readonly ILogger<DutchRepository> _logger;
 
-        public DutchRepository(DutchContext ctx, ILogger<DutchRepository> logger) {
+        public DutchRepository(DutchContext ctx, ILogger<DutchRepository> logger)
+        {
             _ctx = ctx;
             _logger = logger;
         }
 
-        public void AddEntity(object model) {
+        public void AddEntity(object model)
+        {
             _ctx.Add(model);
         }
 
-        public IEnumerable<Order> GetAllOrders(bool includeItems) {
-            if (includeItems) {
+        public void AddOrder(Order order)
+        {
+            foreach (var item in order.Items)
+            {
+                item.Product = _ctx.Products.Find(item.Product.Id);
+            }
+
+            AddEntity(order);
+        }
+
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
+        {
+            if (includeItems)
+            {
 
                 return _ctx.Orders
                     .Include(o => o.Items)
                     .ThenInclude(i => i.Product)
                     .ToList();
 
-            } else {
+            }
+            else
+            {
                 return _ctx.Orders
                     .ToList();
             }
         }
 
-        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems) {
-            if (includeItems) {
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
+        {
+            if (includeItems)
+            {
 
                 return _ctx.Orders
                     .Where(o => o.User.UserName == username)
@@ -44,40 +64,49 @@ namespace DutchTreat.Data {
                     .ThenInclude(i => i.Product)
                     .ToList();
 
-            } else {
+            }
+            else
+            {
                 return _ctx.Orders
                     .Where(o => o.User.UserName == username)
                     .ToList();
             }
         }
 
-        public IEnumerable<Product> GetAllProducts() {
-            try {
+        public IEnumerable<Product> GetAllProducts()
+        {
+            try
+            {
                 _logger.LogInformation("GetAllProducts was called");
 
                 return _ctx.Products
                     .OrderBy(p => p.Title)
                     .ToList();
-            } catch (Exception ex) {
+            }
+            catch (Exception ex)
+            {
                 _logger.LogError($"Failed to get all products: {ex}");
                 return null;
             }
         }
 
-        public Order GetOrderById(string username, int id) {
+        public Order GetOrderById(string username, int id)
+        {
             return _ctx.Orders
                 .Include(o => o.Items)
                 .ThenInclude(i => i.Product)
                 .FirstOrDefault(o => o.Id == id && o.User.UserName == username);
         }
 
-        public IEnumerable<Product> GetProductsByCategory(string category) {
+        public IEnumerable<Product> GetProductsByCategory(string category)
+        {
             return _ctx.Products
                 .Where(p => p.Category == category)
                 .ToList();
         }
 
-        public bool SaveAll() {
+        public bool SaveAll()
+        {
             return _ctx.SaveChanges() > 0;
         }
     }

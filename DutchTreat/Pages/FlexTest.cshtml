@@ -1,0 +1,76 @@
+﻿@page
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FlexTest</title>
+    <style>
+        /*.flex-container{ display: flex; border: solid 1px #dcdcdc}*/
+        /*.flex-container{ display: inline-flex; border: solid 1px #dcdcdc; height: 300px}*/
+        /*flex direction - row is default */
+        /*.flex-container { flex-direction: row ; display: inline-flex; border: solid 1px #dcdcdc;}*/
+        /*.flex-container { flex-direction: row-reverse; display: inline-flex; border: solid 1px #dcdcdc; }*/
+        /*.flex-container { flex-direction: row;width: 100%; display: inline-flex; border: solid 1px #dcdcdc; }*/
+
+
+        /*from top to bottom use column*/
+        /*.flex-container { flex-direction: column-reverse; width: 180px; display: inline-flex; border: solid 1px #dcdcdc; }*/
+
+        /*** WRAP; flex-wrap: nowrap; dafault **/
+        /*.flex-container { flex-wrap: nowrap; display: flex; width: 180px; height: 180px; border: solid 1px black; }*/
+        /*.flex-container { flex-wrap: wrap; display: flex; width: 180px; height: 180px; border: solid 1px black; }*/
+        /*.flex-container { flex-wrap: wrap-reverse; display: flex; width: 180px; border: solid 1px black; }*/
+        /*.flex-container { flex-wrap: wrap-reverse;flex-direction: column; display: flex; width: 180px; border: solid 1px black; }*/
+
+        /*** Flow (combines flex-direction and wrap) **/
+        /*.flex-container { flex-flow: row nowrap; display: flex; width: 180px; height: 180px; border: solid 1px black; }*/
+        .flex-container { display: flex; height: 180px; width: 60%; border: solid 1px black; }
+        .flex-item { color: #fff; font-size: 1.2em; padding: 1em; text-align: center; }
+        .flex-item:first-child { background-color: #a62e5c }
+        .flex-item:nth-child(2) { background-color: #9BC850; }
+        .flex-item:nth-child(3) { background-color: slateblue; }
+
+
+        /*.flex-item { color: #fff; font-size: 1.2em; padding: 1em; text-align: center; min-width: 40px }*/
+        /*flex-grow 1: fill equaly; use any number  */
+        /*.flex-item { flex-grow: 1; color: #fff; font-size: 1.2em; padding: 1em; text-align: center; }*/
+        /*.flex-item:first-child { flex-grow: 2; background-color: #a62e5c }*/
+
+
+        /*flex-shrink */
+        /*flex-basis - initial size before extra space distributed*/
+        /* flex: felx-grow flex-shrink and flex-basis*/
+        /*.flex-item { flex: 1 1 auto }*/
+        /*.flex-item:nth-child(2) { flex-basis: 20px; background-color: #9BC850; }*/
+
+        /*alignment*/
+        .flex-container { flex-direction: column; height: 300px }
+        .flex-container { justify-content: flex-start }
+        .flex-container { justify-content: flex-end }
+        .flex-container { justify-content: center; }
+        .flex-container { flex-direction: row; }
+        .flex-container { justify-content: space-between; }
+        .flex-container { justify-content: space-around; }
+
+        .flex-container { align-items: flex-start }
+        .flex-container { align-items: center }
+        .flex-container { align-items: baseline }
+        .flex-container { align-items: stretch }
+
+        .flex-container { display: flex; flex-wrap: wrap; width: 200px}
+        .flex-container { align-content: flex-start }
+        .flex-container { align-content: flex-end }
+        .flex-container { align-content: stretch }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <div class="flex-item">div 1</div>
+        <div class="flex-item">div 2</div>
+        <div class="flex-item">div 3</div>
+    </div>
+</body>
+</html>
